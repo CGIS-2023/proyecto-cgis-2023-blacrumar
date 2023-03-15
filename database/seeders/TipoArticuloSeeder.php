@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TipoArticuloSeeder extends Seeder
 {
@@ -22,6 +23,6 @@ class TipoArticuloSeeder extends Seeder
             [
                 'nombre' => "proteccion",
             ],
-        ])
+        ]);
     }
 }

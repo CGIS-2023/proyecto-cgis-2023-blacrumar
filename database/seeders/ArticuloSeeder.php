@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ArticuloSeeder extends Seeder
 {
@@ -37,6 +38,6 @@ class ArticuloSeeder extends Seeder
                 'cantidadMinima' => '3',
                 'unidadMedida' => null,
             ],
-        ])
+        ]);
     }
 }
