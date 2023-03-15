@@ -20,23 +20,23 @@ class ArticuloSeeder extends Seeder
                 'nombre' => "Mascarillas",
                 'tipo_articulo_id' => null,
                 'cantidad' => '30',
-                'cantidadMinima' => '3',
-                'unidadMedida' => 'null',
+                'cantidad_minima' => '3',
+                'unidad_medida_id' => 'null',
 
             ],
             [
                 'nombre' => "Guantes",
                 'tipo_articulo_id' => null,
                 'cantidad' => '70',
-                'cantidadMinima' => '20',
-                'unidadMedida' => 'null',
+                'cantidad_minima' => '20',
+                'unidad_medida_id' => 'null',
             ],
             [
                 'nombre' => "Agujas",
                 'tipo_articulo_id' => null,
                 'cantidad' => '10',
-                'cantidadMinima' => '3',
-                'unidadMedida' => 'null',
+                'cantidad_minima' => '3',
+                'unidad_medida_id' => 'null',
             ],
         ]);
     }
