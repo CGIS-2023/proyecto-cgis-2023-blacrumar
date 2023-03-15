@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticulosTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -17,10 +17,11 @@ class CreateArticulosTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nombre');
+            $table->enum('tipo_articulo_id')->nullable();
             $table->integer('cantidad');
-            $table->enum('tipo');
-            $table->integer('cantidadMinima');
-            $table->enum('unidadMedida');
+            $table->enum('unidad_medida_id')->nullable();
+            $table->integer('cantidad_minima');
+            $table->softDeletes();
         });
     }
 

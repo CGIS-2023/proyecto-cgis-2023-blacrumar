@@ -9,5 +9,11 @@ class TipoArticulo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_tipo', 'tipo'];
+    protected $fillable = ['nombre'];
+
+    public function Articulos(){
+        return $this->hasOne(Articulo::class);
+        
+    }
 }
+

@@ -9,19 +9,28 @@ class Articulo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_articulo', 'nombre', 'tipo', 'cantidad', 'unidadMedida', 'cantidadMinima'];
+    protected $fillable = ['nombre', 'tipo_articulo_id', 'cantidad', 'unidad_medida_id', 'cantidad_minima'];
 
-    //CÓMO SE HACE REFERENCIA A UNIDADMEDIDA Y TIPO
 
     public function trabajador(){
         return $this->hasOne(Trabajador::class);
     }
 
     public function lineaPedido(){
-        return $this->hasOne(LineaPedido::class);
+        return $this->belongsTo(LineaPedido::class);
     }
 
+    /*
     public function proveedors(){
         return $this->belongsToMany(Proveedor::class)->using(ArticuloProveedorPivot::class)->withPivot('nombre_articulo', 'nombre_empresa');
+    }
+    */
+
+    public function unidadMedida(){
+        return $this->belongsTo(UnidadMedida::class);
+    }
+
+    public function tipoArticulo(){
+        return $this->belongsTo(TipoArticulo::class);
     }
 }

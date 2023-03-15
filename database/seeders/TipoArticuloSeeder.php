@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ProveedorSeeder extends Seeder
+class TipoArticuloSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,14 @@ class ProveedorSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('tipo_articulos')->insert([
+            [
+                'nombre' => "quirurgico",
+
+            ],
+            [
+                'nombre' => "proteccion",
+            ],
+        ])
     }
 }

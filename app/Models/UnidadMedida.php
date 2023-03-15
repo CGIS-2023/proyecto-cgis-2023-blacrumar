@@ -9,5 +9,10 @@ class UnidadMedida extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_unidad', 'nombre'];
+    protected $fillable = ['nombre'];
+
+    public function Articulos(){
+        return $this->hasOne(Articulo::class);
+        
+    }
 }
