@@ -16,11 +16,11 @@ class CreateArticulosTable extends Migration
         Schema::create('articulos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->nombre();
-            $table->cantidad();
-            $table->tipo();
-            $table->cantidadMinima();
-            $table->unidadMedida();
+            $table->string('nombre');
+            $table->integer('cantidad');
+            $table->enum('tipo');
+            $table->integer('cantidadMinima');
+            $table->enum('unidadMedida');
         });
     }
 
