@@ -37,6 +37,6 @@ class ArticuloSeeder extends Seeder
                 'cantidadMinima' => '3',
                 'unidadMedida' => null,
             ],
-        ]),
+        ])
     }
 }

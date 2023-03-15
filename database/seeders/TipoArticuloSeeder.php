@@ -22,6 +22,6 @@ class TipoArticuloSeeder extends Seeder
             [
                 'nombre' => "proteccion",
             ],
-        ]),
+        ])
     }
 }
