@@ -15,8 +15,10 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        //
+        $articulos = Articulo::paginate(25); //QUE ES PAGINATE
+        return view('/articulos/index', ['articulos' => $articulos])
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +27,7 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        //
+        return view('articulos/create');
     }
 
     /**
@@ -36,7 +38,18 @@ class ArticuloController extends Controller
      */
     public function store(StoreArticuloRequest $request)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255',
+            'tipo_articulo_id' => '',
+            'cantidad' => 'required|numeric',
+            'cantidad_minima' => 'required|numeric',
+            'unidad_medida_id' => '',
+        
+        ]);
+        $articulo = new Articulo($request->all());
+        $articulo->save();
+        session()->flash('success', 'Articulo creado correctamente.');
+        return redirect()->route('articulos.index');
     }
 
     /**
@@ -58,7 +71,7 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
-        //
+        return view('articulos/edit', ['articulo' => $articulo]);
     }
 
     /**
@@ -70,7 +83,17 @@ class ArticuloController extends Controller
      */
     public function update(UpdateArticuloRequest $request, Articulo $articulo)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255',
+            'tipo_articulo_id' => '',
+            'cantidad' => 'required|numeric',
+            'cantidad_minima' => 'required|numeric',
+            'unidad_medida_id' => '',
+        ]);
+        $articulo->fill($request->all());
+        $articulo->save();
+        session()->flash('success', 'Articulo modificado correctamente');
+        return redirect()->route('articulos.index');
     }
 
     /**
@@ -81,6 +104,12 @@ class ArticuloController extends Controller
      */
     public function destroy(Articulo $articulo)
     {
-        //
+        if($articulo->delete()){
+            session()->flash('success', 'Articulo borrado correctamente');
+        }
+        else{
+            session()->flash('warning', 'No pudo borrarse el articulo');
+        }
+        return redirect()->route('articulos.index');
     }
 }

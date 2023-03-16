@@ -15,7 +15,8 @@ class TipoArticuloController extends Controller
      */
     public function index()
     {
-        //
+        $tipoArticulos = TipoArticulo::paginate(25);
+        return view('/tipoArticulos/index',['tipoArticulos' => $tipoArticulos]);
     }
 
     /**
@@ -25,7 +26,7 @@ class TipoArticuloController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipoArticulos/create');
     }
 
     /**
@@ -36,7 +37,13 @@ class TipoArticuloController extends Controller
      */
     public function store(StoreTipoArticuloRequest $request)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255'
+        ]);
+        $tipoArticulo = new tipoArticulo($request->all());
+        $tipoArticulo->save();
+        session()->flash('success','TipoArticulo creado correctamente');
+        return redirect()->route('tipoArticulos.index');
     }
 
     /**
@@ -58,7 +65,7 @@ class TipoArticuloController extends Controller
      */
     public function edit(TipoArticulo $tipoArticulo)
     {
-        //
+        return view('tipoArticulos/edit', ['tipoArticulo' => $tipoArticulo]);
     }
 
     /**
@@ -70,7 +77,13 @@ class TipoArticuloController extends Controller
      */
     public function update(UpdateTipoArticuloRequest $request, TipoArticulo $tipoArticulo)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255'
+        ]);
+        $tipoArticulo->fill($request->all());
+        $tipoArticulo->save();
+        session()->flash('success', 'TipoArticulo modificado correctamente');
+        return redirect()->route('tipoArticulos.index');
     }
 
     /**
@@ -81,6 +94,12 @@ class TipoArticuloController extends Controller
      */
     public function destroy(TipoArticulo $tipoArticulo)
     {
-        //
+        if($tipoArticulo->delete()){
+            session()->flash('success', 'tipoArticulo borrado correctamente');
+        }
+        else{
+            session()->flash('warning', 'No pudo borrarse el tipoArticulo');
+        }
+        return redirect()->route('tipoArticulos.index');
     }
 }

@@ -15,7 +15,8 @@ class UnidadMedidaController extends Controller
      */
     public function index()
     {
-        //
+        $unidadMedidas = UnidadMedida::paginate(25);
+        return view('/unidadMedidas/index', ['unidadMedidas' => $unidadMedidas]);
     }
 
     /**
@@ -25,7 +26,7 @@ class UnidadMedidaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipoArticulos/create');
     }
 
     /**
@@ -36,7 +37,13 @@ class UnidadMedidaController extends Controller
      */
     public function store(StoreUnidadMedidaRequest $request)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255'
+        ]);
+        $unidadMedida = new UnidadMedida($request->all());
+        $unidadMedida->save();
+        session()->flash('success', 'UnidadMedida creada correctamente');
+        return redirect()->route('unidadMedidas.index');
     }
 
     /**
@@ -58,7 +65,7 @@ class UnidadMedidaController extends Controller
      */
     public function edit(UnidadMedida $unidadMedida)
     {
-        //
+        return view('unidadMedidas/edit', ['unidadMedida' => $unidadMedida]);
     }
 
     /**
@@ -70,7 +77,13 @@ class UnidadMedidaController extends Controller
      */
     public function update(UpdateUnidadMedidaRequest $request, UnidadMedida $unidadMedida)
     {
-        //
+        $this->validate($request, [
+            'nombre' => 'required|string|max:255'
+        ]);
+        $unidadMedida->fill($request->all());
+        $unidadMedida->save();
+        session()->flash('success', 'unidadMedida modificado correctamente');
+        return redirect()->route('unidadMedidas.index');
     }
 
     /**
@@ -81,6 +94,12 @@ class UnidadMedidaController extends Controller
      */
     public function destroy(UnidadMedida $unidadMedida)
     {
-        //
+        if($unidadMedida->delete()){
+            session()->flash('success', 'unidadMedida borrada correctamente');
+        }
+        else{
+            session()->flash('warning', 'No pudo borrarse la unidadMedida');
+        }
+        return redirect()->route('unidadMedidas.index');
     }
 }
