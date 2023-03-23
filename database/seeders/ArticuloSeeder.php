@@ -18,25 +18,25 @@ class ArticuloSeeder extends Seeder
         DB::table('articulos')->insert([
             [
                 'nombre' => "Mascarillas",
-                'tipo_articulo_id' => null,
+                'tipo_articulo_id' => 1,
                 'cantidad' => '30',
                 'cantidad_minima' => '3',
-                'unidad_medida_id' => null,
+                'unidad_medida_id' => 1,
 
             ],
             [
                 'nombre' => "Guantes",
-                'tipo_articulo_id' => null,
+                'tipo_articulo_id' => 2,
                 'cantidad' => '70',
                 'cantidad_minima' => '20',
-                'unidad_medida_id' => null,
+                'unidad_medida_id' => 2,
             ],
             [
                 'nombre' => "Agujas",
-                'tipo_articulo_id' => null,
+                'tipo_articulo_id' => 1,
                 'cantidad' => '10',
                 'cantidad_minima' => '3',
-                'unidad_medida_id' => null,
+                'unidad_medida_id' => 2,
             ],
         ]);
     }

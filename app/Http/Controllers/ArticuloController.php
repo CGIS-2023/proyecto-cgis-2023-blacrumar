@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticuloRequest;
 use App\Http\Requests\UpdateArticuloRequest;
 use App\Models\Articulo;
+use App\Models\TipoArticulo;
+use App\Models\UnidadMedida;
 
 class ArticuloController extends Controller
 {
@@ -16,7 +18,7 @@ class ArticuloController extends Controller
     public function index()
     {
         $articulos = Articulo::paginate(25); //QUE ES PAGINATE
-        return view('/articulos/index', ['articulos' => $articulos])
+        return view('/articulos/index', ['articulos' => $articulos]);
     }
 
 
@@ -27,7 +29,9 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        return view('articulos/create');
+        $tipoArticulos = TipoArticulo::all();
+        $unidadMedidas = UnidadMedida::all();
+        return view('articulos/create', ['tipoArticulos' => $tipoArticulos, 'unidadMedidas' => $unidadMedidas]);
     }
 
     /**
@@ -40,10 +44,10 @@ class ArticuloController extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
-            'tipo_articulo_id' => '',
+            'tipo_articulo_id' => 'string|max:255',
             'cantidad' => 'required|numeric',
             'cantidad_minima' => 'required|numeric',
-            'unidad_medida_id' => '',
+            'unidad_medida_id' => 'string:255',
         
         ]);
         $articulo = new Articulo($request->all());
@@ -71,7 +75,9 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
-        return view('articulos/edit', ['articulo' => $articulo]);
+        $tipoArticulos = TipoArticulo::all();
+        $unidadMedidas = UnidadMedida::all();
+        return view('articulos/edit', ['articulo' => $articulo, 'tipoArticulos' => $tipoArticulos, 'unidadMedidas' => $unidadMedidas]);
     }
 
     /**
@@ -85,10 +91,10 @@ class ArticuloController extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
-            'tipo_articulo_id' => '',
+            'tipo_articulo_id' => 'string|max:255',
             'cantidad' => 'required|numeric',
             'cantidad_minima' => 'required|numeric',
-            'unidad_medida_id' => '',
+            'unidad_medida_id' => 'string|max:255',
         ]);
         $articulo->fill($request->all());
         $articulo->save();

@@ -21,10 +21,9 @@
                             <tr class="bg-gray-200 text-gray-900 uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left">ID</th>
                                 <th class="py-3 px-6 text-left">Nombre</th>
-                                <th class="py-3 px-6 text-left">cantidad</th>
-                                <th class="py-3 px-6 text-left">cantidad_minima</th>
-                                <th class="py-3 px-6 text-left">tipo_articulo_id</th>
-                                <th class="py-3 px-6 text-left">unidad_medida_id</th>
+                                <th class="py-3 px-6 text-left">Cantidad</th>
+                                <th class="py-3 px-6 text-left">Cantidad mínima</th>
+                                <th class="py-3 px-6 text-left">Tipo artículo</th>
                                 <th class="py-3 px-6 text-right">Acciones</th>
                             </tr>
                         </thead>
@@ -34,37 +33,27 @@
                             <tr class="border-b {{$articulo->vacunado ? 'bg-green-50 hover:bg-green-100' : 'bg-red-50 hover:bg-red-100'}} border-gray-200">
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$medico->id}}</span>
+                                        <span class="font-medium">{{$articulo->id}}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$medico->user->name}}</span>
+                                        <span class="font-medium">{{$articulo->nombre}}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$articulo->tipo_articulo_id ? $articulo->tipo_articulo->nombre : __('Sin tipo')}}</span>
+                                        <span class="font-medium">{{$articulo->cantidad}} {{$articulo->unidad_medida_id ? $articulo->unidadMedida->nombre : __('Sin unidad de medida')}}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$articulo->unidad_medida_id ? $articulo->unidad_medida->nombre : __('Sin unidad de medida')}}</span>
+                                        <span class="font-medium">{{$articulo->cantidad_minima}} {{$articulo->unidad_medida_id ? $articulo->unidadMedida->nombre : __('Sin unidad de medida')}}</span>
                                     </div>
                                 </td>                            
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{number_format($articulo->cantidad, 2)}}€</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{number_format($articulo->cantidad_minima, 2)}}€</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$articulo->citas()->where('fecha_hora', \Carbon\Carbon::now())->count()}}</span>
+                                        <span class="font-medium">{{$articulo->tipo_articulo_id ? $articulo->tipoArticulo->nombre : __('Sin tipo')}}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-center">

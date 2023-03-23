@@ -15,7 +15,7 @@ class UnidadMedidaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_articulos')->insert([
+        DB::table('unidad_medidas')->insert([
             [
                 'nombre' => "mililitros",
 
