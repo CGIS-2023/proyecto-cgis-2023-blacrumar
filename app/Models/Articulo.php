@@ -33,4 +33,8 @@ class Articulo extends Model
     public function tipoArticulo(){
         return $this->belongsTo(TipoArticulo::class);
     }
+
+    public function proveedors(){
+        return $this->belongsToMany(Proveedor::class)->withPivot('precio');
+    }
 }

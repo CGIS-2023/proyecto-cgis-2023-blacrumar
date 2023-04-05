@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticuloController;
+use App\Http\Controllers\ProveedorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,10 @@ Route::get('/dashboard', function () {
 
 
 //Route::middleware(['auth'])->group(function () {
-    Route::resources(
-        ['articulos' => ArticuloController::class]
-    );
+    Route::resources([
+        'articulos' => ArticuloController::class,
+        'proveedors' => ProveedorController::class,
+    ]);
 //});
 
 require __DIR__.'/auth.php';

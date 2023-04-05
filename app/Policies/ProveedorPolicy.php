@@ -18,7 +18,7 @@ class ProveedorPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->tipo_usuario_id == ;
     }
 
     /**
