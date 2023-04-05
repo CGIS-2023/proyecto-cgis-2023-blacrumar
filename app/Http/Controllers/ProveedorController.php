@@ -103,7 +103,7 @@ class ProveedorController extends Controller
      */
     public function destroy(Proveedor $proveedor)
     {
-        f($proveedor->delete()) {
+        if($proveedor->delete()) {
             session()->flash('success', 'Proveedor borrado correctamente');
         }
         else{
