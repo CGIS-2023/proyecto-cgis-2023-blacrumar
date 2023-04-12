@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProveedorSeeder extends Seeder
 {
@@ -28,7 +29,7 @@ class ProveedorSeeder extends Seeder
                 'telefono' => "777777777",
                 'email' => "empresa2@empresa.com",
                 'web' => "www.empresa2.es",
-            ]
-        ])
+            ],
+        ]);
     }
 }

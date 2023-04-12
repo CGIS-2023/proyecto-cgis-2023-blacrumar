@@ -26,7 +26,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        return view('proveedos/create');
+        return view('proveedors/create');
     }
 
     /**
@@ -42,7 +42,7 @@ class ProveedorController extends Controller
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
             'email' => 'required|string|max:255',
-            'web' => 'required|string|max:255'
+            'web' => 'required|string|max:255',
         ]);
         $proveedor = new Proveedor($request->all());
         $proveedor->save();
@@ -58,8 +58,7 @@ class ProveedorController extends Controller
      */
     public function show(Proveedor $proveedor)
     {
-        $articulos = Articulo::all();
-        return view('proveedors/show', ['proveedor' => $proveedor, 'articulos' => $articulos]);
+        //return view('proveedors/show', ['proveedor' => $proveedor, );
     }
 
     /**
@@ -87,7 +86,7 @@ class ProveedorController extends Controller
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
             'email' => 'required|string|max:255',
-            'web' => 'required|string|max:255'
+            'web' => 'required|string|max:255',
         ]);
         $proveedor->fill($request->all());
         $proveedor->save();
