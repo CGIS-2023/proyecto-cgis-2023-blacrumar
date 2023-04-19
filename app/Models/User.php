@@ -41,4 +41,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function odontologo()
+    {
+        return $this->hasOne(Odontologo::class);
+    }
+
+    public function auxiliar()
+    {
+        return $this->hasOne(Auxiliar::class);
+    }
+
+    public function recepcionistar()
+    {
+        return $this->hasOne(Recepcionistar::class);
+    }
+
+    public function getTipoUsuarioIdAttribute(){
+        if ($this->odontologo()->exists()){
+            return 1;
+        }
+        elseif($this->auxiliar()->exists()){
+            return 2;
+        }
+        elseif($this->recepcionistar()->exists()){
+            return 3;
+        }
+        else{
+            return 4;
+        }
+    }
+
+    public function getTipoUsuarioAttribute(){
+        $tipos_usuario = [1 => trans('Odontólogo'), 2 => trans('Auxiliar'), 3 => trans('Recepcionista')];
+        return $tipos_usuario[$this->tipo_usuario_id];
+    }
 }

@@ -8,6 +8,10 @@ use App\Models\UnidadMedida;
 
 class UnidadMedidaController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(UnidadMedida::class, 'unidadMedida');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -8,6 +8,11 @@ use App\Models\TipoArticulo;
 
 class TipoArticuloController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(TipoArticulo::class, 'tipoArticulo');
+    }
     /**
      * Display a listing of the resource.
      *

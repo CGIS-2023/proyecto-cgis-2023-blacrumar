@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('proveedors', function (Blueprint $table) {
+        Schema::create('auxiliars', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('nombre');
-            $table->string('direccion');
-            $table->string('telefono');
-            $table->string('email');
-            $table->string('web');
-            //$table->foreignId('articulo_id')->constrained()->onDelete('cascade');
+            $table->string('apellidos');
+            $table->string('DNI');  
+            $table->string('telefono');  
+            $table->string('email');  
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
             $table->softDeletes();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proveedors');
+        Schema::dropIfExists('auxiliars');
     }
 };

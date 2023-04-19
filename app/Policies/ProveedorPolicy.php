@@ -18,7 +18,8 @@ class ProveedorPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->tipo_usuario_id == ;
+        
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -30,7 +31,7 @@ class ProveedorPolicy
      */
     public function view(User $user, Proveedor $proveedor)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -41,7 +42,7 @@ class ProveedorPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -53,7 +54,7 @@ class ProveedorPolicy
      */
     public function update(User $user, Proveedor $proveedor)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -65,7 +66,7 @@ class ProveedorPolicy
      */
     public function delete(User $user, Proveedor $proveedor)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

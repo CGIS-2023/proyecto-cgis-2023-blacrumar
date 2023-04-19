@@ -18,7 +18,7 @@ class ArticuloPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->tipo_usuario_id == ;
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -30,7 +30,7 @@ class ArticuloPolicy
      */
     public function view(User $user, Articulo $articulo)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -41,7 +41,7 @@ class ArticuloPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class ArticuloPolicy
      */
     public function update(User $user, Articulo $articulo)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -65,7 +65,7 @@ class ArticuloPolicy
      */
     public function delete(User $user, Articulo $articulo)
     {
-        //
+        return $user->tipo_usuario_id ==1;
     }
 
     /**

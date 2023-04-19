@@ -10,6 +10,10 @@ use App\Models\UnidadMedida;
 
 class ArticuloController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Articulo::class, 'articulo');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -64,7 +68,11 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        //
+        $tipoArticulos = TipoArticulo::all();
+        $unidadMedidas = UnidadMedida::all();
+        return view('articulos/show', ['articulo' => $articulo, 'tipoArticulos' => $tipoArticulos, 'unidadMedidas' => $unidadMedidas]);
+    
+        
     }
 
     /**
@@ -118,4 +126,24 @@ class ArticuloController extends Controller
         }
         return redirect()->route('articulos.index');
     }
+    /*
+
+    public function attach_proveedor(Request $request, Articulo $articulo)
+    {
+        $this->validateWithBag('attach',$request, [
+            'proveedor_id' => 'required,id',
+            'precio' => 'required|numeric',
+        ]);
+        $cita->proveedors()->attach($request->proveedor_id, [
+            'precio' => $request->precio,
+        ]);
+        return redirect()->route('articulos.edit', $articulo->id);
+    }
+
+    public function detach_proveedor(Articulo $articulo, Proveedor $proveedor)
+    {
+        $articulo->proveedors()->detach($proveedor->id);
+        return redirect()->route('articulos.edit', $articulo->id);
+    }
+    */
 }

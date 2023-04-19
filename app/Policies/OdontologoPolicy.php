@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\UnidadMedida;
+use App\Models\Odontologo;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UnidadMedidaPolicy
+class OdontologoPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class UnidadMedidaPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->tipo_usuario_id == 4;
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UnidadMedida  $unidadMedida
+     * @param  \App\Models\Odontologo  $odontologo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, UnidadMedida $unidadMedida)
+    public function view(User $user, Odontologo $odontologo)
     {
-        return $user->tipo_usuario_id == 4;
+        //
     }
 
     /**
@@ -41,41 +41,41 @@ class UnidadMedidaPolicy
      */
     public function create(User $user)
     {
-        return $user->tipo_usuario_id == 4;
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UnidadMedida  $unidadMedida
+     * @param  \App\Models\Odontologo  $odontologo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, UnidadMedida $unidadMedida)
+    public function update(User $user, Odontologo $odontologo)
     {
-        return $user->tipo_usuario_id == 4;
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UnidadMedida  $unidadMedida
+     * @param  \App\Models\Odontologo  $odontologo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, UnidadMedida $unidadMedida)
+    public function delete(User $user, Odontologo $odontologo)
     {
-        return $user->tipo_usuario_id == 4;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UnidadMedida  $unidadMedida
+     * @param  \App\Models\Odontologo  $odontologo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, UnidadMedida $unidadMedida)
+    public function restore(User $user, Odontologo $odontologo)
     {
         //
     }
@@ -84,10 +84,10 @@ class UnidadMedidaPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UnidadMedida  $unidadMedida
+     * @param  \App\Models\Odontologo  $odontologo
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, UnidadMedida $unidadMedida)
+    public function forceDelete(User $user, Odontologo $odontologo)
     {
         //
     }

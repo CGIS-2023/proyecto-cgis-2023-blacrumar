@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProveedorRequest;
 use App\Http\Requests\UpdateProveedorRequest;
 use App\Models\Proveedor;
+use App\Models\Articulo;
+use App\Models\Odontologo;
+use App\Models\Auxiliar;
+use Illuminate\Support\Facades\Auth;
 
 class ProveedorController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Proveedor::class, 'proveedor');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,7 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $proveedors = Proveedor::paginate(25);
+        $proveedors = Proveedor::orderBy('nombre')->paginate(25);
         return view('/proveedors/index', ['proveedors' => $proveedors]);
     }
 
@@ -26,7 +34,16 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        return view('proveedors/create');
+        $odontologos = Odontologo::all();
+        $auxiliars = Auxiliar::all();
+        if(Auth::user()->tipo_usuario_id == 1){
+            return view('proveedors/create', ['odontologo' => Auth::user()->odontologo, 'auxiliars' => $auxiliars]);
+        }
+        elseif(Auth::user()->tipo_usuario_id == 2) {
+            return view('proveedors/create', ['auxiliar' => Auth::user()->auxiliar, 'odontologos' => $odontologos]);
+        }
+        return view('proveedors/create', ['auxiliars' => $auxiliars, 'odontologos' => $odontologos]);
+        
     }
 
     /**
@@ -37,13 +54,23 @@ class ProveedorController extends Controller
      */
     public function store(StoreProveedorRequest $request)
     {
-        $this->validate($request, [
+        $reglas = [
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
             'email' => 'required|string|max:255',
             'web' => 'required|string|max:255',
-        ]);
+        ];
+        if(Auth::user()->tipo_usuario_id == 2){
+            $reglas_auxiliar = ['auxiliar_id' => ['required', 'exists:auxiliars,id', Rule::in(Auth::user()->auxiliar->id)]];
+            $reglas = array_merge($reglas_auxiliar, $reglas);
+        }
+        else{
+            $reglas_generales = ['auxiliar_id' => ['required', 'exists:auxiliars,id']];
+            $reglas = array_merge($reglas_generales, $reglas);
+        }
+
+        $this->validate($request, $reglas);
         $proveedor = new Proveedor($request->all());
         $proveedor->save();
         session()->flash('success', 'Proveedor creado correctamente');
@@ -58,7 +85,10 @@ class ProveedorController extends Controller
      */
     public function show(Proveedor $proveedor)
     {
-        //return view('proveedors/show', ['proveedor' => $proveedor, );
+        /*
+        $articulos = Articulo::all();
+        return view('proveedors/show', ['proveedor' => $proveedor, 'articulos' => $articulos]);
+        */
     }
 
     /**
@@ -69,7 +99,17 @@ class ProveedorController extends Controller
      */
     public function edit(Proveedor $proveedor)
     {
-        return view('proveedors/edit', ['proveedor' => $proveedor]);
+        //Le paso a la vista los articulos porque permito añadir uno desde esa misma vista
+        $articulos = Articulo::all();
+        $odontologos = Odontologo::all();
+        $auxiliars = Auxiliar::all();
+        if(Auth::user()->tipo_usuario_id == 1){
+            return view('proveedors/edit', ['proveedor' => $proveedor, 'odontologo' => Auth::user()->odontologo, 'auxiliars' => $auxiliars, 'articulos' => $articulos]);
+        }
+        elseif(Auth::user()->tipo_usuario_id == 2) {
+            return view('proveedors/edit', ['proveedor' => $proveedor, 'auxiliar' => Auth::user()->auxiliar, 'odontologos' => $odontologos, 'articulos' => $articulos]);
+        }
+        return view('proveedors/edit', ['proveedor' => $proveedor, 'auxiliars' => $auxiliars, 'odontologos' => $odontologos, 'articulos' => $articulos]);
     }
 
     /**
@@ -81,13 +121,22 @@ class ProveedorController extends Controller
      */
     public function update(UpdateProveedorRequest $request, Proveedor $proveedor)
     {
-        $this->validate($request, [
+        $reglas = [
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
             'email' => 'required|string|max:255',
             'web' => 'required|string|max:255',
-        ]);
+        ];
+        if(Auth::user()->tipo_usuario_id == 2){
+            $reglas_auxiliar = ['auxiliar_id' => ['required', 'exists:auxiliars,id', Rule::in(Auth::user()->auxiliar->id)]];
+            $reglas = array_merge($reglas_auxiliar, $reglas);
+        }
+        else{
+            $reglas_generales = ['auxiliar_id' => ['required', 'exists:auxiliars,id']];
+            $reglas = array_merge($reglas_generales, $reglas);
+        }
+        $this->validate($request, $reglas);
         $proveedor->fill($request->all());
         $proveedor->save();
         session()->flash('success', 'Proveedor modificado correctamente');
@@ -109,5 +158,23 @@ class ProveedorController extends Controller
             session()->flash('warning', 'El proveedor no pudo borrarse. Es probable que se deba a que tenga asociada información como articulos que dependen de él.');
         }
         return redirect()->route('proveedors.index');
+    }
+
+    public function attach_articulo(Request $request, Proveedor $proveedor)
+    {
+        $this->validateWithBag('attach',$request, [
+            'articulo_id' => 'required,id',
+            'precio' => 'required|numeric',
+        ]);
+        $proveedor->articulos()->attach($request->articulo_id, [
+            'precio' => $request->precio,
+        ]);
+        return redirect()->route('proveedors.edit', $proveedor->id);
+    }
+
+    public function detach_articulo(Proveedor $proveedor, Articulo $articulo)
+    {
+        $proveedor->articulos()->detach($articulo->id);
+        return redirect()->route('proveedors.edit', $proveedor->id);
     }
 }

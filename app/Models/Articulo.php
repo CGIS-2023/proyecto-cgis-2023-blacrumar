@@ -11,10 +11,11 @@ class Articulo extends Model
 
     protected $fillable = ['nombre', 'tipo_articulo_id', 'cantidad', 'unidad_medida_id', 'cantidad_minima'];
 
-
+/*
     public function trabajador(){
         return $this->hasOne(Trabajador::class);
     }
+    */
 
     public function lineaPedido(){
         return $this->belongsTo(LineaPedido::class);
