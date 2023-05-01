@@ -5,16 +5,17 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Odontologo>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Administrador>
  */
-class OdontologoFactory extends Factory
+class AdministradorFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = Odontologo::class;
+    
+    protected $model = Administrador::class;
     public function definition()
     {
         return [

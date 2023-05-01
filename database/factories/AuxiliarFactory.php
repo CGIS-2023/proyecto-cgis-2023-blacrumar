@@ -14,6 +14,7 @@ class AuxiliarFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Auxiliar::class;
     public function definition()
     {
         return [

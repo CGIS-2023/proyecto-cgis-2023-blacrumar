@@ -8,6 +8,7 @@ use App\Models\Articulo;
 use App\Models\TipoArticulo;
 use App\Models\UnidadMedida;
 
+
 class ArticuloController extends Controller
 {
     public function __construct()

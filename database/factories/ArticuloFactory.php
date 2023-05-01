@@ -14,6 +14,8 @@ class ArticuloFactory extends Factory
      *
      * @return array<string, mixed>
      */
+   
+    protected $model = Articulo::class;
     public function definition()
     {
         return [

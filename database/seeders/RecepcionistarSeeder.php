@@ -22,7 +22,7 @@ class RecepcionistarSeeder extends Seeder
                 'DNI' => '18263840P',
                 'telefono' => '629402736',
                 'email' => 'inma@correo.com',
-                'user_id' => "2"
+                'user_id' => "4"
 
             ]
             ]);

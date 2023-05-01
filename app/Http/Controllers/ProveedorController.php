@@ -8,7 +8,9 @@ use App\Models\Proveedor;
 use App\Models\Articulo;
 use App\Models\Odontologo;
 use App\Models\Auxiliar;
+use App\Models\Administrador;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
@@ -35,14 +37,14 @@ class ProveedorController extends Controller
     public function create()
     {
         $odontologos = Odontologo::all();
-        $auxiliars = Auxiliar::all();
+        $administradors = Administrador::all();
         if(Auth::user()->tipo_usuario_id == 1){
-            return view('proveedors/create', ['odontologo' => Auth::user()->odontologo, 'auxiliars' => $auxiliars]);
+            return view('proveedors/create', ['administrador' => Auth::user()->administrador, 'odontologos' => $odontologos]);
         }
         elseif(Auth::user()->tipo_usuario_id == 2) {
-            return view('proveedors/create', ['auxiliar' => Auth::user()->auxiliar, 'odontologos' => $odontologos]);
+            return view('proveedors/create', ['odontologo' => Auth::user()->odontologo, 'administradors' => $administradors]);
         }
-        return view('proveedors/create', ['auxiliars' => $auxiliars, 'odontologos' => $odontologos]);
+        return view('proveedors/create', ['administradors' => $administradors, 'odontologos' => $odontologos]);
         
     }
 
@@ -61,7 +63,8 @@ class ProveedorController extends Controller
             'email' => 'required|string|max:255',
             'web' => 'required|string|max:255',
         ];
-        if(Auth::user()->tipo_usuario_id == 2){
+        /*
+        if(Auth::user()->tipo_usuario_id == 3){
             $reglas_auxiliar = ['auxiliar_id' => ['required', 'exists:auxiliars,id', Rule::in(Auth::user()->auxiliar->id)]];
             $reglas = array_merge($reglas_auxiliar, $reglas);
         }
@@ -69,7 +72,7 @@ class ProveedorController extends Controller
             $reglas_generales = ['auxiliar_id' => ['required', 'exists:auxiliars,id']];
             $reglas = array_merge($reglas_generales, $reglas);
         }
-
+*/
         $this->validate($request, $reglas);
         $proveedor = new Proveedor($request->all());
         $proveedor->save();
@@ -104,12 +107,12 @@ class ProveedorController extends Controller
         $odontologos = Odontologo::all();
         $auxiliars = Auxiliar::all();
         if(Auth::user()->tipo_usuario_id == 1){
-            return view('proveedors/edit', ['proveedor' => $proveedor, 'odontologo' => Auth::user()->odontologo, 'auxiliars' => $auxiliars, 'articulos' => $articulos]);
+            return view('proveedors/edit', ['proveedor' => $proveedor, 'administrador' => Auth::user()->administrador, 'odontologos' => $odontologos, 'articulos' => $articulos]);
         }
         elseif(Auth::user()->tipo_usuario_id == 2) {
-            return view('proveedors/edit', ['proveedor' => $proveedor, 'auxiliar' => Auth::user()->auxiliar, 'odontologos' => $odontologos, 'articulos' => $articulos]);
+            return view('proveedors/edit', ['proveedor' => $proveedor, 'odontologo' => Auth::user()->odontologo, 'administradors' => $administradors, 'articulos' => $articulos]);
         }
-        return view('proveedors/edit', ['proveedor' => $proveedor, 'auxiliars' => $auxiliars, 'odontologos' => $odontologos, 'articulos' => $articulos]);
+        return view('proveedors/edit', ['proveedor' => $proveedor, 'administradors' => $administradors, 'odontologos' => $odontologos, 'articulos' => $articulos]);
     }
 
     /**
@@ -128,7 +131,8 @@ class ProveedorController extends Controller
             'email' => 'required|string|max:255',
             'web' => 'required|string|max:255',
         ];
-        if(Auth::user()->tipo_usuario_id == 2){
+        /*
+        if(Auth::user()->tipo_usuario_id == 3){
             $reglas_auxiliar = ['auxiliar_id' => ['required', 'exists:auxiliars,id', Rule::in(Auth::user()->auxiliar->id)]];
             $reglas = array_merge($reglas_auxiliar, $reglas);
         }
@@ -136,6 +140,7 @@ class ProveedorController extends Controller
             $reglas_generales = ['auxiliar_id' => ['required', 'exists:auxiliars,id']];
             $reglas = array_merge($reglas_generales, $reglas);
         }
+        */
         $this->validate($request, $reglas);
         $proveedor->fill($request->all());
         $proveedor->save();
@@ -163,7 +168,7 @@ class ProveedorController extends Controller
     public function attach_articulo(Request $request, Proveedor $proveedor)
     {
         $this->validateWithBag('attach',$request, [
-            'articulo_id' => 'required,id',
+            'articulo_id' => 'required|exists:articulos,id',
             'precio' => 'required|numeric',
         ]);
         $proveedor->articulos()->attach($request->articulo_id, [

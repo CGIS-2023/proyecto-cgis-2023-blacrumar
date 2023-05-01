@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -23,6 +24,10 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
+    public function create_odontologo(){
+        return view('auth.register-odontologo');
+    }
+
     /**
      * Handle an incoming registration request.
      *
@@ -30,38 +35,55 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' =>'required|string|confirmed|min:8',
+        ];
 
         $tipo_usuario_id = intval($request->tipo_usuario_id);
         if($tipo_usuario_id == 1){
-            //Odontologo
-            $reglas_admin = ['fecha_contratacion' => 'required|date',
-                'vacunado' => 'required|boolean',
-                'sueldo' => 'required|numeric',
-                
+            //Administrador
+            $reglas_admin = ['nombre' => 'required|string',
+                'apellidos' => 'required|string',
+                'DNI' => 'required|string',
+                'telefono' => 'required|string',
+                'email' => 'required|string',                
             ];
-            $rules = array_merge($reglas_medico, $rules);
+            $rules = array_merge($reglas_admin, $rules);
         }
         elseif($tipo_usuario_id == 2){
-            //Auxiliar
-            $reglas_auxiliar = ['nuhsa' => ['required', 'string', 'max:12', 'min:12', new Nuhsa()]];
-            $rules = array_merge($reglas_auxiliar, $rules);
+            //Odontologo
+            $reglas_odontologo = ['nombre' => 'required|string',
+            'apellidos' => 'required|string',
+            'DNI' => 'required|string',
+            'telefono' => 'required|string',
+            'email' => 'required|string',
+            ];
+            $rules = array_merge($reglas_odontologo, $rules);
         }
         elseif($tipo_usuario_id == 3){
-            //Recepcionista
-            $reglas_recepcionista = ['nuhsa' => ['required', 'string', 'max:12', 'min:12', new Nuhsa()]];
-            $rules = array_merge($reglas_recepcionista, $rules);
+            //Auxiliar
+            $reglas_auxiliar = ['nombre' => 'required|string',
+            'apellidos' => 'required|string',
+            'DNI' => 'required|string',
+            'telefono' => 'required|string',
+            'email' => 'required|string',                
+            ];
+            $rules = array_merge($reglas_auxiliar, $rules);
         }
+        elseif($tipo_usuario_id == 4){
+            //Recepcionista
+            $reglas_recepcionistar = ['nombre' => 'required|string',
+            'apellidos' => 'required|string',
+            'DNI' => 'required|string',
+            'telefono' => 'required|string',
+            'email' => 'required|string',                
+            ];
+            $rules = array_merge($reglas_recepcionistar, $rules);
+        }
+
+
         $request->validate($rules);
         $user = User::create([
             'name' => $request->name,
@@ -69,35 +91,33 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
         if($tipo_usuario_id == 1) {
-            //Odontologo
-            $odontologo = new Odontologo($request->all());
-            $odontologo->user_id = $user->id;
-            $odontologo->save();
+            //Administrador
+            $administrador = new Administrador($request->all());
+            $administrador->user_id = $user->id;
+            $administrador->save();
         }
         elseif($tipo_usuario_id == 2){
+         //Odontologo
+         $odontologo = new Odontologo($request->all());
+         $odontologo->user_id = $user->id;
+         $odontologo->save();
+        }
+        elseif($tipo_usuario_id == 3){
             //Auxiliar
             $auxiliar = new Auxiliar($request->all());
             $auxiliar->user_id = $user->id;
             $auxiliar->save();
         }
-        elseif($tipo_usuario_id == 3){
+        elseif($tipo_usuario_id == 4){
             //Recepcionista
             $recepcionista = new Recepcionista($request->all());
             $recepcionista->user_id = $user->id;
             $recepcionista->save();
         }
 
-        
-
-
-
-
         $user->fresh();
-
-        event(new Registered($user));
-
         Auth::login($user);
-
+        event(new Registered($user));
         return redirect(RouteServiceProvider::HOME);
     }
 }

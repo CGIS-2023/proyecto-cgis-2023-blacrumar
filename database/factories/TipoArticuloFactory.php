@@ -14,6 +14,7 @@ class TipoArticuloFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = TipoArticulo::class;
     public function definition()
     {
         return [

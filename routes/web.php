@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\ProveedorController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,16 +26,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+/*
 
-//Route::middleware(['auth'])->group(function () {
-    Route::resources([
-        'articulos' => ArticuloController::class,
-        'proveedors' => ProveedorController::class,
-        'odontologos' => OdontologoController::class,
-        'auxiliars' => AuxiliarController::class,
-    ]);
-
-//Tanto los médicos como los administradores pueden editar el médico y trabajar con los medicamentos de las citas
 Route::middleware(['auth', 'tipo_usuario:1,2,4'])->group(function () {
     Route::get('/odontologos/{odontologo}/edit', [OdontologoController::class, 'edit'])->name('odontologos.edit');
     Route::put('/odontologos/{odontologo}', [OdontologoController::class, 'update'])->name('odontologos.update');
@@ -46,4 +40,38 @@ Route::middleware(['auth', 'tipo_usuario:1,2,4'])->group(function () {
         ->middleware('can:detach_articulo,proveedor');
 });
 
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+
+*/
+
 require __DIR__.'/auth.php';
+// Route::middleware(['auth'])->group(function () {
+    Route::resources([
+        'proveedors' => ProveedorController::class,
+        'articulos' => ArticuloController::class,
+        'odontologos' => OdontologoController::class,
+        'auxiliars' => AuxiliarController::class,
+        'administradors' => AdministradorController::class,
+        'recepcionistars' => RecepcionistarController::class,
+    ]);
+
+    Route::post('/proveedors/{proveedor}/attach-articulo', [ProveedorController::class, 'attach_articulo'])
+        ->name('proveedors.attach_articulo');
+    Route::delete('/proveedors/{proveedor}/detach_articulo/{articulo}', [ProveedorController::class, 'detach_articulo'])
+        ->name('proveedors.detach_articulo');
+
+
+
+
+
+    
+// });

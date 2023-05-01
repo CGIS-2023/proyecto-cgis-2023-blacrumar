@@ -109,7 +109,7 @@
                             <tr class="border-b border-gray-200 hover:bg-gray-100">
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$articulo->nombre}} {{$articulo->tipo_articulo_id}} {{$articulo->cantidad}} {{$articulo->unidad_medida_id}} {{$articulo->cantidad_minima}}</span>
+                                        <span class="font-medium">{{$articulo->nombre}} </span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-center whitespace-nowrap">
@@ -128,7 +128,7 @@
                                             </a>
                                         </div>--}}
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <form id="detach-form-{{$proveedor->id}}-{{$articulo->id}}" method="POST" action="{{ route('proveedors.detachMedicamento', [$proveedor->id, $articulo->id]) }}">
+                                            <form id="detach-form-{{$proveedor->id}}-{{$articulo->id}}" method="POST" action="{{ route('proveedors.detach_articulo', [$proveedor->id, $articulo->id]) }}">
                                                 @csrf
                                                 @method('delete')
                                                 <a class="cursor-pointer" onclick="getElementById('detach-form-{{$proveedor->id}}-{{$articulo->id}}').submit();">
@@ -159,7 +159,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors->attach" />
-                    <form method="POST" action="{{ route('proveedors.attachArticulo', [$proveedor->id]) }}">
+                    <form method="POST" action="{{ route('proveedors.attach_articulo', [$proveedor->id]) }}">
                         @csrf
 
                         <div class="mt-4">

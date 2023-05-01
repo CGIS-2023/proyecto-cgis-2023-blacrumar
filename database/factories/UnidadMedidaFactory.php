@@ -14,6 +14,7 @@ class UnidadMedidaFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = UnidadMedida::class;
     public function definition()
     {
         return [

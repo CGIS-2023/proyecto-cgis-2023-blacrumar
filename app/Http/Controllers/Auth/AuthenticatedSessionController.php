@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if(in_array(Auth::user()->tipo_usuario_id, [3,4])){
+        if(in_array(Auth::user()->tipo_usuario_id, [1,2,3,4])){
             return redirect()->route('articulos.index');
         }
 

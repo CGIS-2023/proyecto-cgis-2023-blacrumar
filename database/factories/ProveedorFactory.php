@@ -14,6 +14,8 @@ class ProveedorFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    protected $model = Proveedor::class;
     public function definition()
     {
         return [

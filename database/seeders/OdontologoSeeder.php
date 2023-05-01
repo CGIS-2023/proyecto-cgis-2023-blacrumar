@@ -22,7 +22,7 @@ class OdontologoSeeder extends Seeder
                 'DNI' => "32938040L",
                 'telefono' => "623683048",
                 'email' => "sergio@correo.com",
-                'user_id' => '1'
+                'user_id' => '2'
 
             ]
             ]);

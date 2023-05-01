@@ -14,6 +14,7 @@ class RecepcionistarFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Recepcionistar::class;
     public function definition()
     {
         return [

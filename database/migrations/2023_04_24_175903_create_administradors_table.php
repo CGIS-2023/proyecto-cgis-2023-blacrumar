@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articulo_proveedor', function (Blueprint $table) {
+        Schema::create('administradors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('precio');
-            $table->foreignId('articulo_id')->constrained();
-            $table->foreignId('proveedor_id')->constrained();
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->string('DNI');  
+            $table->string('telefono');  
+            $table->string('email');  
+            $table->foreignId('user_id')->unique()->constrained()->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articulo_proveedor');
+        Schema::dropIfExists('administradors');
     }
 };

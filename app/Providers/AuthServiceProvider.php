@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -20,7 +21,8 @@ class AuthServiceProvider extends ServiceProvider
         UnidadMedida::class => UnidadMedida::class,
         Auxiliar::class => AuxiliarPolicy::class,
         Odontologo::class => OdontologoPolicy::class,
-        Recepcionistar::class => RecepcionistarPolicy::class
+        Recepcionistar::class => RecepcionistarPolicy::class,
+        Administrador::class => AdministradorPolicy::class,
     ];
 
     /**
