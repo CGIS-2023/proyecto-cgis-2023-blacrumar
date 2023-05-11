@@ -21,7 +21,7 @@ class AuthServiceProvider extends ServiceProvider
         UnidadMedida::class => UnidadMedida::class,
         Auxiliar::class => AuxiliarPolicy::class,
         Odontologo::class => OdontologoPolicy::class,
-        Recepcionistar::class => RecepcionistarPolicy::class,
+        Recepcionista::class => RecepcionistaPolicy::class,
         Administrador::class => AdministradorPolicy::class,
     ];
 

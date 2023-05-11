@@ -5,16 +5,15 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Recepcionistar>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pedido>
  */
-class RecepcionistarFactory extends Factory
+class PedidoFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = Recepcionistar::class;
     public function definition()
     {
         return [

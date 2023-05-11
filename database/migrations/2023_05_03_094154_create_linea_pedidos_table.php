@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articulo_proveedor', function (Blueprint $table) {
+        
+        Schema::create('linea_pedidos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->integer('precio');
-            $table->foreignId('articulo_id')->constrained()->onDelete('cascade');
-            $table->foreignId('proveedor_id')->constrained()->onDelete('cascade');
+            $table->integer('cantidad_pedida');
+            $table->foreignId('pedido_id')->constrained();
+            $table->foreignId('articulo_id')->constrained();
+            $table->timestamps();
         });
+        
     }
 
     /**
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articulo_proveedor');
+        Schema::dropIfExists('linea_pedidos');
     }
 };

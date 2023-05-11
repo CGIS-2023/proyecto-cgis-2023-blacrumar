@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Recepcionistar;
+use App\Models\Recepcionista;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RecepcionistarPolicy
+class RecepcionistaPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class RecepcionistarPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Recepcionistar $recepcionistar)
+    public function view(User $user, Recepcionista $recepcionista)
     {
         //
     }
@@ -48,10 +48,10 @@ class RecepcionistarPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Recepcionistar $recepcionistar)
+    public function update(User $user, Recepcionista $recepcionista)
     {
         //
     }
@@ -60,10 +60,10 @@ class RecepcionistarPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Recepcionistar $recepcionistar)
+    public function delete(User $user, Recepcionista $recepcionista)
     {
         //
     }
@@ -72,10 +72,10 @@ class RecepcionistarPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Recepcionistar $recepcionistar)
+    public function restore(User $user, Recepcionista $recepcionista)
     {
         //
     }
@@ -84,10 +84,10 @@ class RecepcionistarPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Recepcionistar $recepcionistar)
+    public function forceDelete(User $user, Recepcionista $recepcionista)
     {
         //
     }

@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articulo_proveedor', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->integer('precio');
-            $table->foreignId('articulo_id')->constrained()->onDelete('cascade');
+            $table->date('fecha_pedido');
+            $table->date('fecha_recepcion');
             $table->foreignId('proveedor_id')->constrained()->onDelete('cascade');
+            $table->foreignId('recepcionista_id')->constrained()->onDelte('cascade');
+            $table->foreignId('administrador_id')->cosntrained()->onDelete('cascade');
+            $table->foreignId('odontologo_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articulo_proveedor');
+        Schema::dropIfExists('pedidos');
     }
 };

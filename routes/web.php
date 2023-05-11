@@ -4,8 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\ProveedorController;
-
-
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\LineaPedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,13 +61,22 @@ require __DIR__.'/auth.php';
         'odontologos' => OdontologoController::class,
         'auxiliars' => AuxiliarController::class,
         'administradors' => AdministradorController::class,
-        'recepcionistars' => RecepcionistarController::class,
+        'recepcionistas' => RecepcionistaController::class,
+        'pedidos' => PedidoController::class,
+        'lineaPedidos' => LineaPedidoController::class,
     ]);
 
     Route::post('/proveedors/{proveedor}/attach-articulo', [ProveedorController::class, 'attach_articulo'])
         ->name('proveedors.attach_articulo');
     Route::delete('/proveedors/{proveedor}/detach_articulo/{articulo}', [ProveedorController::class, 'detach_articulo'])
         ->name('proveedors.detach_articulo');
+
+    Route::post('/articulos/{articulo}/attach-proveedor', [ArticuloController::class, 'attach_proveedor'])
+        ->name('articulos.attach_proveedor');
+    Route::delete('/articulos/{articulo}/detach_proveedor/{proveedor}', [ArticuloController::class, 'detach_proveedor'])
+        ->name('articulos.detach_proveedor');
+
+
 
 
 

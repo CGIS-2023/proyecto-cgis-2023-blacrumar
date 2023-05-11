@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRecepcionistarRequest;
-use App\Http\Requests\UpdateRecepcionistarRequest;
-use App\Models\Recepcionistar;
+use App\Http\Requests\StoreRecepcionistaRequest;
+use App\Http\Requests\UpdateRecepcionistaRequest;
+use App\Models\Recepcionista;
 
-class RecepcionistarController extends Controller
+class RecepcionistaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class RecepcionistarController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreRecepcionistarRequest  $request
+     * @param  \App\Http\Requests\StoreRecepcionistaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRecepcionistarRequest $request)
+    public function store(StoreRecepcionistaRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class RecepcionistarController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Http\Response
      */
-    public function show(Recepcionistar $recepcionistar)
+    public function show(Recepcionista $recepcionista)
     {
         //
     }
@@ -53,10 +53,10 @@ class RecepcionistarController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Http\Response
      */
-    public function edit(Recepcionistar $recepcionistar)
+    public function edit(Recepcionista $recepcionista)
     {
         //
     }
@@ -64,11 +64,11 @@ class RecepcionistarController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateRecepcionistarRequest  $request
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Http\Requests\UpdateRecepcionistaRequest  $request
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRecepcionistarRequest $request, Recepcionistar $recepcionistar)
+    public function update(UpdateRecepcionistaRequest $request, Recepcionista $recepcionista)
     {
         //
     }
@@ -76,10 +76,10 @@ class RecepcionistarController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Recepcionistar  $recepcionistar
+     * @param  \App\Models\Recepcionista  $recepcionista
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Recepcionistar $recepcionistar)
+    public function destroy(Recepcionista $recepcionista)
     {
         //
     }

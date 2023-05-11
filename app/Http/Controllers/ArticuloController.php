@@ -50,8 +50,8 @@ class ArticuloController extends Controller
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
             'tipo_articulo_id' => 'string|max:255',
-            'cantidad' => 'required|numeric',
-            'cantidad_minima' => 'required|numeric',
+            'cantidad' => 'required|numeric|min:0',
+            'cantidad_minima' => 'numeric|min:0',
             'unidad_medida_id' => 'string:255',
         
         ]);
@@ -101,8 +101,8 @@ class ArticuloController extends Controller
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
             'tipo_articulo_id' => 'string|max:255',
-            'cantidad' => 'required|numeric',
-            'cantidad_minima' => 'required|numeric',
+            'cantidad' => 'required|numeric|min:0',
+            'cantidad_minima' => 'numeric|min:0',
             'unidad_medida_id' => 'string|max:255',
         ]);
         $articulo->fill($request->all());
@@ -127,17 +127,15 @@ class ArticuloController extends Controller
         }
         return redirect()->route('articulos.index');
     }
-    /*
+
+    
 
     public function attach_proveedor(Request $request, Articulo $articulo)
     {
         $this->validateWithBag('attach',$request, [
-            'proveedor_id' => 'required,id',
-            'precio' => 'required|numeric',
+            'proveedor_id' => 'required|exists:proveedors,id',
         ]);
-        $cita->proveedors()->attach($request->proveedor_id, [
-            'precio' => $request->precio,
-        ]);
+        
         return redirect()->route('articulos.edit', $articulo->id);
     }
 
@@ -146,5 +144,5 @@ class ArticuloController extends Controller
         $articulo->proveedors()->detach($proveedor->id);
         return redirect()->route('articulos.edit', $articulo->id);
     }
-    */
+    
 }

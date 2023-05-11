@@ -11,14 +11,10 @@ class Articulo extends Model
 
     protected $fillable = ['nombre', 'tipo_articulo_id', 'cantidad', 'unidad_medida_id', 'cantidad_minima'];
 
-/*
-    public function trabajador(){
-        return $this->hasOne(Trabajador::class);
-    }
-    */
+
 
     public function lineaPedido(){
-        return $this->belongsTo(LineaPedido::class);
+        return $this->hasMany(LineaPedido::class);
     }
 
     /*
@@ -38,4 +34,15 @@ class Articulo extends Model
     public function proveedors(){
         return $this->belongsToMany(Proveedor::class)->withPivot('precio');
     }
+
+
+    public function getEstaBajoStockAttribute(){
+        if ($this->cantidad_minima < $this->cantidad){
+            return false;
+        }
+        return true;
+    }
+    
+
+
 }

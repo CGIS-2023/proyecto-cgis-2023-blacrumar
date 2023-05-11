@@ -57,9 +57,9 @@ class User extends Authenticatable
         return $this->hasOne(Auxiliar::class);
     }
 
-    public function recepcionistar()
+    public function recepcionista()
     {
-        return $this->hasOne(Recepcionistar::class);
+        return $this->hasOne(Recepcionista::class);
     }
 
     public function getTipoUsuarioIdAttribute(){
@@ -72,7 +72,7 @@ class User extends Authenticatable
         elseif($this->auxiliar()->exists()){
             return 3;
         }
-        elseif($this->recepcionistar()->exists()){
+        elseif($this->recepcionista()->exists()){
             return 3;
         }
         else{

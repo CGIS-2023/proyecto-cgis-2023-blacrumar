@@ -74,13 +74,13 @@ class RegisteredUserController extends Controller
         }
         elseif($tipo_usuario_id == 4){
             //Recepcionista
-            $reglas_recepcionistar = ['nombre' => 'required|string',
+            $reglas_recepcionista = ['nombre' => 'required|string',
             'apellidos' => 'required|string',
             'DNI' => 'required|string',
             'telefono' => 'required|string',
             'email' => 'required|string',                
             ];
-            $rules = array_merge($reglas_recepcionistar, $rules);
+            $rules = array_merge($reglas_recepcionista, $rules);
         }
 
 
