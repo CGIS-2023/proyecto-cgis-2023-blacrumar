@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticuloRequest;
 use App\Http\Requests\UpdateArticuloRequest;
 use App\Models\Articulo;
+use App\Models\Proveedor;
 use App\Models\TipoArticulo;
 use App\Models\UnidadMedida;
 

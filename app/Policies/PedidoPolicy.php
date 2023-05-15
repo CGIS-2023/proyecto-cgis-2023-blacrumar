@@ -77,7 +77,7 @@ class PedidoPolicy
      */
     public function restore(User $user, Pedido $pedido)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

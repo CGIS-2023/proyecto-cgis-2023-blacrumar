@@ -77,7 +77,7 @@ class LineaPedidoPolicy
      */
     public function restore(User $user, LineaPedido $lineaPedido)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

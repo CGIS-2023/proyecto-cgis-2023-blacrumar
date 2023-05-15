@@ -65,7 +65,7 @@ class ArticuloPolicy
      */
     public function delete(User $user, Articulo $articulo)
     {
-        return $user->tipo_usuario_id ==1;
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -77,7 +77,7 @@ class ArticuloPolicy
      */
     public function restore(User $user, Articulo $articulo)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

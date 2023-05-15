@@ -19,7 +19,7 @@ class AdministradorPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -31,7 +31,7 @@ class AdministradorPolicy
      */
     public function view(User $user, Administrador $administrador)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -42,7 +42,7 @@ class AdministradorPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -54,7 +54,7 @@ class AdministradorPolicy
      */
     public function update(User $user, Administrador $administrador)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -66,7 +66,7 @@ class AdministradorPolicy
      */
     public function delete(User $user, Administrador $administrador)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -78,7 +78,7 @@ class AdministradorPolicy
      */
     public function restore(User $user, Administrador $administrador)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

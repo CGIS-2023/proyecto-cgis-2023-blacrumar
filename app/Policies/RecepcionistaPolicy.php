@@ -18,7 +18,7 @@ class RecepcionistaPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -30,7 +30,7 @@ class RecepcionistaPolicy
      */
     public function view(User $user, Recepcionista $recepcionista)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -41,7 +41,7 @@ class RecepcionistaPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class RecepcionistaPolicy
      */
     public function update(User $user, Recepcionista $recepcionista)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -65,7 +65,7 @@ class RecepcionistaPolicy
      */
     public function delete(User $user, Recepcionista $recepcionista)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -77,7 +77,7 @@ class RecepcionistaPolicy
      */
     public function restore(User $user, Recepcionista $recepcionista)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

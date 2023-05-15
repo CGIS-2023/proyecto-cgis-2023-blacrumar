@@ -17,11 +17,6 @@ class AdministradorSeeder extends Seeder
     {
         DB::table('administradors')->insert([
             [
-            'nombre' => "Miguel",
-            'apellidos' => "Pontes",
-            'DNI' => '269146710K',
-            'telefono' => '619253909',
-            'email' => 'miguel@correo.com',
             'user_id' => '1',
             ]
             ]);

@@ -32,9 +32,25 @@
                         {{ __('Pedidos') }}
                     </x-nav-link>
                 </div>
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('lineaPedidos.index')" :active="request()->routeIs('lineaPedidos.index') or request()->routeIs('lineaPedidos.create')">
-                        {{ __('Línea Pedido') }}
+                    <x-nav-link :href="route('administradors.index')" :active="request()->routeIs('administradors.index') or request()->routeIs('administradors.create')">
+                        {{ __('Administradores') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('auxiliars.index')" :active="request()->routeIs('auxiliars.index') or request()->routeIs('auxiliars.create')">
+                        {{ __('Auxiliares') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('odontologos.index')" :active="request()->routeIs('odontologos.index') or request()->routeIs('odontologos.create')">
+                        {{ __('Odontólogos') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('recepcionistas.index')" :active="request()->routeIs('recepcionistas.index') or request()->routeIs('recepcionistas.create')">
+                        {{ __('Recepcionistas') }}
                     </x-nav-link>
                 </div>
                 

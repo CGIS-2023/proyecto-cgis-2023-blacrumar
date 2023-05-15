@@ -17,12 +17,7 @@ class OdontologoSeeder extends Seeder
     {
         DB::table('odontologos')->insert([
             [
-                'nombre' => "Sergio",
-                'apellidos' => "Díaz",
-                'DNI' => "32938040L",
-                'telefono' => "623683048",
-                'email' => "sergio@correo.com",
-                'user_id' => '2'
+                'user_id' => '2',
 
             ]
             ]);

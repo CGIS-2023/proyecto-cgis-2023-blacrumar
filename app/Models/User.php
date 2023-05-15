@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellido',
         'email',
         'password',
     ];
@@ -73,10 +74,10 @@ class User extends Authenticatable
             return 3;
         }
         elseif($this->recepcionista()->exists()){
-            return 3;
+            return 4;
         }
         else{
-            return 4;
+            return 5;
         }
     }
 

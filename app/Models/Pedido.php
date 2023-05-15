@@ -11,6 +11,12 @@ class Pedido extends Model
 
     protected $fillable = ['fecha_pedido','fecha_recepcion'];
 
+    protected $casts = [
+        'fecha_pedido' => 'date:d-m-Y',
+        'fecha_recepcion' => 'date:d-m-Y'
+    ];
+    
+
     public function lineaPedido(){
         return $this->hasMany(LineaPedido::class);
     }

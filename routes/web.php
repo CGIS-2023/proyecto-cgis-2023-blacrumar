@@ -6,6 +6,10 @@ use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\LineaPedidoController;
+use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\AuxiliarController;
+use App\Http\Controllers\OdontologoController;
+use App\Http\Controllers\RecepcionistaController;
 
 /*
 |--------------------------------------------------------------------------

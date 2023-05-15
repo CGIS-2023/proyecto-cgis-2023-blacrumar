@@ -78,7 +78,7 @@ class ProveedorPolicy
      */
     public function restore(User $user, Proveedor $proveedor)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

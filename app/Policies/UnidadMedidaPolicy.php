@@ -18,7 +18,7 @@ class UnidadMedidaPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->tipo_usuario_id == 4;
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -30,7 +30,7 @@ class UnidadMedidaPolicy
      */
     public function view(User $user, UnidadMedida $unidadMedida)
     {
-        return $user->tipo_usuario_id == 4;
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -41,7 +41,7 @@ class UnidadMedidaPolicy
      */
     public function create(User $user)
     {
-        return $user->tipo_usuario_id == 4;
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class UnidadMedidaPolicy
      */
     public function update(User $user, UnidadMedida $unidadMedida)
     {
-        return $user->tipo_usuario_id == 4;
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -65,7 +65,7 @@ class UnidadMedidaPolicy
      */
     public function delete(User $user, UnidadMedida $unidadMedida)
     {
-        return $user->tipo_usuario_id == 4;
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -77,7 +77,7 @@ class UnidadMedidaPolicy
      */
     public function restore(User $user, UnidadMedida $unidadMedida)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

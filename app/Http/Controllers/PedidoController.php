@@ -90,7 +90,7 @@ class PedidoController extends Controller
         $recepcionistas = Recepcionista::all();
         $administradors = Administrador::all();
         $odontologos = Odontologo::all();
-        return view('pedidos/edit', ['proveedors' => $proveedors, 'lineaPedidos' => $lineaPedidos, 'recepcionistas' => $recepcionistas, 'administradors' => $administradors, 'odontologos' => $odontologos]);
+        return view('pedidos/edit', ['pedido'=> $pedido, 'proveedors' => $proveedors, 'lineaPedidos' => $lineaPedidos, 'recepcionistas' => $recepcionistas, 'administradors' => $administradors, 'odontologos' => $odontologos]);
     
     }
 

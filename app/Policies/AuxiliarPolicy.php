@@ -18,7 +18,7 @@ class AuxiliarPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -30,7 +30,7 @@ class AuxiliarPolicy
      */
     public function view(User $user, Auxiliar $auxiliar)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -41,7 +41,7 @@ class AuxiliarPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class AuxiliarPolicy
      */
     public function update(User $user, Auxiliar $auxiliar)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -65,7 +65,7 @@ class AuxiliarPolicy
      */
     public function delete(User $user, Auxiliar $auxiliar)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**
@@ -77,7 +77,7 @@ class AuxiliarPolicy
      */
     public function restore(User $user, Auxiliar $auxiliar)
     {
-        //
+        return $user->tipo_usuario_id == 1;
     }
 
     /**

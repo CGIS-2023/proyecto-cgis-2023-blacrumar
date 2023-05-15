@@ -17,11 +17,6 @@ class RecepcionistaSeeder extends Seeder
     {
         DB::table('recepcionistas')->insert([
             [
-                'nombre' => "Inma",
-                'apellidos' => "Rodríguez",
-                'DNI' => '18263840P',
-                'telefono' => '629402736',
-                'email' => 'inma@correo.com',
                 'user_id' => "4"
 
             ]
