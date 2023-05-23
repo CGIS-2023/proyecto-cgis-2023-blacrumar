@@ -7,7 +7,7 @@ En la clínica trabajarán al menos un odontólogo, un auxiliar, un higienista y
 
 
 
-**Objetivos: 
+**Objetivos:** 
 
 El objetivo es desarrollar una aplicación en la que de un simple vistazo pueda observar cuánto stock queda de cada material. De este modo, no sería necesario invertir tanto tiempo contando en el almacén. Esto implica que, cuando se reciba un pedido, se puedan añadir las cantidades recibidas de cada material. Además, el sistema avisará cuando se alcance una cantidad de material concreta, para que se realice la compra de más y no llegar a agotar existencias. Cada vez que se extraiga un material del almacén, en la aplicación se podrá reducir el número de tantas unidades como se hayan extraído. Por otro lado, como existen 3 o 4 proveedores habituales, sería conveniente que, entrando en un material concreto, se pueda observar el precio de cada uno de estos proveedores para comprárselo al más barato.
 Por lo tanto, con la creación de esta aplicación queremos solucionar:
@@ -18,7 +18,7 @@ Por lo tanto, con la creación de esta aplicación queremos solucionar:
 
 
 
-**Usuarios del sistema: 
+**Usuarios del sistema:** 
 
 Recepcionista: es el responsable de realizar los pedidos cuando la aplicación le informe que debe hacerlo y compara precios, siempre con la autorización del odontólogo. Es el encargado de verificar que queda stock suficiente y en caso contrario, comprar al proveedor más conveniente la cantidad que le indique el odontólogo.
 
@@ -33,7 +33,7 @@ Auxiliar de clínica: puede añadir o reducir las cantidades de los materiales e
 
 
 
-**Requisitos de información: 
+**Requisitos de información:** 
 
 RI-01. Artículo: el sistema deberá almacenar información sobre los artículos que contiene el almacén, en concreto: id_articulo, nombre, tipo (que podrá tomar valor de una lista de valores predefinidos), cantidad, unidad de medida (que podrá tomar valor de una lista de valores predefinidos, por ejemplo, gramos o mililitros), cantidad mínima.
 
@@ -56,7 +56,7 @@ RI-09. Línea Pedido: el sistema deberá almacenar información sobre la línea 
 
 
 
-**Requisitos funcionales:
+**Requisitos funcionales:**
 
 RF-01. El sistema deberá permitir crear un artículo.
 
@@ -170,7 +170,7 @@ RF-45. El sistema deberá permitir actualizar un recepcionista.
 
 
 
-**Reglas de Negocio: 
+**Reglas de Negocio:** 
 
 RN-01: no puede haber menos de cantidad la cantidad mínima de cada artículo. 
 
@@ -181,7 +181,7 @@ RN-03: un administrador no puede eliminarse a sí mismo
 
 
 
-**Requisitos no funcionales:
+**Requisitos no funcionales:**
 
 RNF-01. Seguridad: el sistema debe estar protegido contra el acceso no autorizado
 
