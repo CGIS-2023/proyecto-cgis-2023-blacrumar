@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellido',
         'email',
         'password',
     ];
@@ -41,4 +42,47 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function administrador()
+    {
+        return $this->hasOne(Administrador::class);
+    }
+
+    public function odontologo()
+    {
+        return $this->hasOne(Odontologo::class);
+    }
+
+    public function auxiliar()
+    {
+        return $this->hasOne(Auxiliar::class);
+    }
+
+    public function recepcionista()
+    {
+        return $this->hasOne(Recepcionista::class);
+    }
+
+    public function getTipoUsuarioIdAttribute(){
+        if ($this->administrador()->exists()){
+            return 1;
+        }
+        elseif($this->odontologo()->exists()){
+            return 2;
+        }
+        elseif($this->auxiliar()->exists()){
+            return 3;
+        }
+        elseif($this->recepcionista()->exists()){
+            return 4;
+        }
+        else{
+            return 5;
+        }
+    }
+
+    public function getTipoUsuarioAttribute(){
+        $tipos_usuario = [1 => trans('Administrador'), 2 => trans('Odontólogo'), 3 => trans('Auxiliar'), 4 => trans('Recepcionista')];
+        return $tipos_usuario[$this->tipo_usuario_id];
+    }
 }
