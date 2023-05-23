@@ -194,3 +194,7 @@ RNF-04. Mantenimiento: el sistema debe ser fácil de mantener y actualizar
 RNF-05. Usabilidad: el sistema debe ser fácil de usar y comprender
 
 RNF-06. Compatibilidad: el sistema debe ser compatible con otros sistemas
+
+
+
+![diagrama drawio](https://github.com/CGIS-2023/proyecto-cgis-2023-blacrumar/assets/126070783/b2c350c3-8438-4de0-b152-d32dd634653b)
