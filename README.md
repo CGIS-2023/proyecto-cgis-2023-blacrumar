@@ -1,4 +1,4 @@
-**Dominio del problema: 
+**Dominio del problema:** 
 
 
 El sistema que se va a desarrollar se impondrá en una clínica dental para suplir una necesidad relacionada con la dificultad para saber el stock de la clínica. Cada vez que se quiere saber cuánta cantidad queda de materiales o utensilios que se usan en la clínica dental, se debe entrar al almacén y realizar la cuenta. Por otro lado, se debe estar pendiente y contar cada poco tiempo todo el stock ya que no se puede quedar la clínica sin algún material y se debe encargar y comprar a los proveedores. El inventario se suele hace una vez al mes y ocupa unas dos horas realizarlo, suelen realizarlo los auxiliares de la clínica. Además, existen 3 o 4 proveedores habituales y sería conveniente saber cuál de ellos tiene el producto que se busca más barato. 
