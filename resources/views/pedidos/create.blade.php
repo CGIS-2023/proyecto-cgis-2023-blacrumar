@@ -32,7 +32,7 @@
                             <x-label for="fecha_pedido" :value="__('Fecha Pedido')" />
 
                             <x-input id="fecha_pedido" class="block mt-1 w-full"
-                                     type="date-local"
+                                     type="date"
                                      name="fecha_pedido"
                                      :value="old('fecha_pedido')"
                                      required />
@@ -42,94 +42,19 @@
                             <x-label for="fecha_recepcion" :value="__('Fecha de Recepción')" />
 
                             <x-input id="fecha_recepcion" class="block mt-1 w-full"
-                                     type="date-local"
+                                     type="date"
                                      name="fecha_recepcion"
                                      :value="old('fecha_recepcion')"
                                      required />
                             </div>
 
-                            <!-- Recepcionista id -->
-                            <div class="mt-4">
-                            <x-label for="recepcionista_id" :value="__('Recepcionista')" />
-
-                            @isset($recepcionista)
-                                <x-input id="recepcionista_id" class="block mt-1 w-full"
-                                         type="hidden"
-                                         name="recepcionista_id"
-                                         :value="$recepcionista->id"
-                                         />
-                                <x-input class="block mt-1 w-full"
-                                         type="text"
-                                         disabled
-                                         value="{{$recepcionista->user->name}}"
-                                          />
-                            @else
-                                <x-select id="recepcionista_id" name="recepcionista_id">
-                                    <option value="">{{__('Elige un recepcionista')}}</option>
-                                    @foreach ($recepcionistas as $recepcionista)
-                                        <option value="{{$recepcionista->id}}" @if (old('recepcionista_id') == $recepcionista->id) selected @endif>{{$recepcionista->user->name}}</option>
-                                    @endforeach
-                                </x-select>
-                            @endisset
-                        </div>
-
-                            <!-- Administrador id -->
-                            <div class="mt-4">
-                            <x-label for="administrador_id" :value="__('Administrador')" />
-
-                            @isset($administrador)
-                                <x-input id="administrador_id" class="block mt-1 w-full"
-                                         type="hidden"
-                                         name="administrador_id"
-                                         :value="$administrador->id"
-                                         />
-                                <x-input class="block mt-1 w-full"
-                                         type="text"
-                                         disabled
-                                         value="{{$administrador->user->name}}"
-                                          />
-                            @else
-                                <x-select id="administrador_id" name="administrador_id">
-                                    <option value="">{{__('Elige un administrador')}}</option>
-                                    @foreach ($administradors as $administrador)
-                                        <option value="{{$administrador->id}}" @if (old('administrador_id') == $administrador->id) selected @endif>{{$administrador->user->name}}</option>
-                                    @endforeach
-                                </x-select>
-                            @endisset
-                        </div>
-
-                            <!-- Odontologo id -->
-                            <div class="mt-4">
-                            <x-label for="odontologo_id" :value="__('Odontologo')" />
-
-                            @isset($odontologo)
-                                <x-input id="odontologo_id" class="block mt-1 w-full"
-                                         type="hidden"
-                                         name="odontologo_id"
-                                         :value="$odontolo->id"
-                                         />
-                                <x-input class="block mt-1 w-full"
-                                         type="text"
-                                         disabled
-                                         value="{{$odontologo->user->name}}"
-                                          />
-                            @else
-                                <x-select id="odontologo_id" name="odontologo_id">
-                                    <option value="">{{__('Elige un odontologo')}}</option>
-                                    @foreach ($odontologos as $odontologo)
-                                        <option value="{{$odontologo->id}}" @if (old('odontologo_id') == $odontologo->id) selected @endif>{{$odontologo->user->name}}</option>
-                                    @endforeach
-                                </x-select>
-                            @endisset
-                        </div>
-                        
                             <!-- Proveedor id -->
                             <div class="mt-4">
                             <x-label for="proveedor_id" :value="__('Proveedor')" />
 
                             @isset($proveedor)
                                 <x-input id="proveedor_id" class="block mt-1 w-full"
-                                         type="hidden"
+                                         type="numeric"
                                          name="proveedor_id"
                                          :value="$proveedor->id"
                                          />

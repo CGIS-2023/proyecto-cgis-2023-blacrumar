@@ -7,16 +7,18 @@ use App\Http\Requests\UpdatePedidoRequest;
 use App\Models\Pedido;
 use App\Models\Proveedor;
 use App\Models\LineaPedido;
-use App\Models\Recepcionista;
-use App\Models\Administrador;
-use App\Models\Odontologo;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PedidoController extends Controller
 { 
+    /*
     public function __construct()
     {
         $this->authorizeResource(Pedido::class, 'pedido');
     }
+    */
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +26,12 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::paginate(25); 
+        $pedidos = Pedido::query()
+            ->when(request('busqueda'), function($query){
+                return $query->where('fecha_pedido', 'like', '%' . request('busqueda') . '%');
+            })
+        
+        ->paginate(25); 
         return view('/pedidos/index', ['pedidos' => $pedidos]);
     }
 
@@ -37,10 +44,9 @@ class PedidoController extends Controller
     {
         $proveedors = Proveedor::all();
         $lineaPedidos = LineaPedido::all();
-        $recepcionistas = Recepcionista::all();
-        $administradors = Administrador::all();
-        $odontologos = Odontologo::all();
-        return view('pedidos/create', ['proveedors' => $proveedors, 'lineaPedidos' => $lineaPedidos, 'recepcionistas' => $recepcionistas, 'administradors' => $administradors, 'odontologos' => $odontologos]);
+        
+        
+        return view('pedidos/create', ['proveedors' => $proveedors, 'lineaPedidos' => $lineaPedidos]);
     
     }
 
@@ -55,12 +61,15 @@ class PedidoController extends Controller
         $this->validate($request, [
             'fecha_pedido' => 'required|date',
             'fecha_recepcion' => 'required|date',
-            'recepcionista_id' => 'numeric',
-            'administrador_id' => 'numeric',
-            'odontologo_id' => 'numeric',
             'proveedor_id' => 'required|numeric',
+            
         ]);
+
         $pedido = new Pedido($request->all());
+        $pedido->administrador_id = Auth::user()->administrador()->exists() ? Auth::user()->administrador->id : null;
+        $pedido->odontologo_id = Auth::user()->odontologo_id ? Auth::user()->odontologo->id : null;
+        //$pedido->user_id = Auth::user()->exists() ? Auth::user()->user_id : null;
+        //dd($pedido->user_id = Auth::user()->exists() ? Auth::user()->user_id : null);
         $pedido->save();
         session()->flash('success', 'Pedido creado correctamente.');
         return redirect()->route('pedidos.index');
@@ -87,10 +96,8 @@ class PedidoController extends Controller
     {
         $proveedors = Proveedor::all();
         $lineaPedidos = LineaPedido::all();
-        $recepcionistas = Recepcionista::all();
-        $administradors = Administrador::all();
-        $odontologos = Odontologo::all();
-        return view('pedidos/edit', ['pedido'=> $pedido, 'proveedors' => $proveedors, 'lineaPedidos' => $lineaPedidos, 'recepcionistas' => $recepcionistas, 'administradors' => $administradors, 'odontologos' => $odontologos]);
+        $users = User::all();
+        return view('pedidos/edit', ['pedido'=> $pedido, 'proveedors' => $proveedors, 'lineaPedidos' => $lineaPedidos, 'users' => $users]);
     
     }
 
@@ -106,9 +113,7 @@ class PedidoController extends Controller
         $this->validate($request, [
             'fecha_pedido' => 'required|date',
             'fecha_recepcion' => 'required|date',
-            'recepcionista_id' => 'numeric',
-            'administrador_id' => 'numeric',
-            'odontologo_id' => 'numeric',
+            'user_id' => 'numeric',
             'proveedor_id' => 'required|numeric',
         ]);
         $pedido -> fill($request->all());

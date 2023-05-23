@@ -9,7 +9,7 @@ class Pedido extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fecha_pedido','fecha_recepcion'];
+    protected $fillable = ['fecha_pedido','fecha_recepcion', 'proveedor_id'];
 
     protected $casts = [
         'fecha_pedido' => 'date:d-m-Y',
@@ -25,10 +25,11 @@ class Pedido extends Model
         return $this->hasOne(Proveedor::class);
     }
 
-    public function odontologo(){
-        return $this->hasOne(Odontologo::class);
+    public function user(){
+        return $this->hasOne(User::class);
     }
 
+    /*
     public function administrador(){
         return $this->hasOne(Administrador::class);
     }
@@ -37,4 +38,5 @@ class Pedido extends Model
         return $this->hasOne(Recepcionista::class);
     }
 
+    */
 }

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nombre');
-            $table->foreignId('tipo_articulo_id')->nullable();
+            $table->foreignId('tipo_articulo_id');
             $table->integer('cantidad');
-            $table->foreignId('unidad_medida_id')->nullable();
+            $table->foreignId('unidad_medida_id');
             $table->integer('cantidad_minima');
             $table->softDeletes();
         });

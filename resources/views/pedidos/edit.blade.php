@@ -73,41 +73,6 @@
                             @endisset
                         </div>
 
-                        <div class="mt-4">
-                                <x-label for="recepcionista_id" :value="__('Recepcionista')" />
-
-
-                                <x-select id="recepcionista_id" name="recepcionista_id" required>
-                                    <option value="">{{__('Elige una opción')}}</option>
-                                    @foreach ($recepcionistas as $recepcionista)
-                                    <option value="{{$recepcionista->id}}" @if ($pedido->recepcionista_id == $recepcionista->id) selected @endif>{{$recepcionista->nombre}}</option>
-                                    @endforeach
-                                </x-select>
-                            </div>
-
-                            <div class="mt-4">
-                                <x-label for="administrador_id" :value="__('Administrador')" />
-
-
-                                <x-select id="administrador_id" name="administrador_id" required>
-                                    <option value="">{{__('Elige una opción')}}</option>
-                                    @foreach ($administradors as $administrador)
-                                    <option value="{{$administrador->id}}" @if ($pedido->administrador_id == $administrador->id) selected @endif>{{$administrador->nombre}}</option>
-                                    @endforeach
-                                </x-select>
-                            </div>
-
-                            <div class="mt-4">
-                                <x-label for="odontologo_id" :value="__('Odontologo')" />
-
-
-                                <x-select id="odontologo_id" name="odontologo_id" required>
-                                    <option value="">{{__('Elige una opción')}}</option>
-                                    @foreach ($odontologos as $odontologo)
-                                    <option value="{{$odontologo->id}}" @if ($pedido->odontologo_id == $odontologo->id) selected @endif>{{$odontologo->nombre}}</option>
-                                    @endforeach
-                                </x-select>
-                            </div>
 
                             <div class="flex items-center justify-end mt-4">
                                 <x-button type="button" class="bg-red-800 hover:bg-red-700">

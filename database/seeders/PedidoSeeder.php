@@ -20,8 +20,7 @@ class PedidoSeeder extends Seeder
                 'fecha_pedido' => "21/02/22",
                 'fecha_recepcion' => "9/03/22",
                 'proveedor_id' =>1,
-                'recepcionista_id' =>1,
-                'administrador_id' => 1,
+                'administrador_id' =>1,
                 'odontologo_id' =>1,
 
             ]

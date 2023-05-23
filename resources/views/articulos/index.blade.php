@@ -4,6 +4,22 @@
             {{ __('Artículos') }}
         </h2>
     </x-slot>
+    
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <!--BUSCADOR DE ARTÍCULO-->
+        <form method="GET">
+                        <div class="input-group mb-3">
+                        <input type="text" name="busqueda" class="form-control" placeholder="Buscar">
+                        </div>
+                        <div class="input-group-append">
+                            <button class="submit" type="btn btn-primary">Buscar</button>
+                        </div>
+                    </div>
+                    </form>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="flex items-center mt-4 ml-2">
+    </div>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -15,6 +31,7 @@
                         </x-button>
                     </form>
                 </div>
+                
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="min-w-max w-full table-auto">
                         <thead>

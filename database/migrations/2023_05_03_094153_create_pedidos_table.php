@@ -18,9 +18,10 @@ return new class extends Migration
             $table->date('fecha_pedido');
             $table->date('fecha_recepcion');
             $table->foreignId('proveedor_id')->constrained()->onDelete('cascade');
-            $table->foreignId('recepcionista_id')->constrained()->onDelte('cascade');
-            $table->foreignId('administrador_id')->cosntrained()->onDelete('cascade');
-            $table->foreignId('odontologo_id')->constrained()->onDelete('cascade');
+            //$table->foreignId('user_id')->constrained()->onDelte('cascade');
+            //$table->foreignId('recepcionista_id')->constrained()->onDelte('cascade');
+            $table->foreignId('administrador_id')->constrained();
+            $table->foreignId('odontologo_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

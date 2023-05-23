@@ -7,6 +7,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <form method="GET">
+                        <div class="input-group mb-3">
+                        <input type="text" name="busqueda" class="form-control" placeholder="Buscar">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                        </div>
+                        </div>
+                    </form>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex items-center mt-4 ml-2">
                     <form method="GET" action="{{ route('pedidos.create') }}">
@@ -23,9 +31,7 @@
                                 <th class="py-3 px-6 text-left">Fecha Pedido</th>
                                 <th class="py-3 px-6 text-left">Fecha Recepcion</th>
                                 <th class="py-3 px-6 text-left">Proveedor</th>
-                                <th class="py-3 px-6 text-left">Recepcionista</th>
-                                <th class="py-3 px-6 text-left">Administrador</th>
-                                <th class="py-3 px-6 text-left">Odontologo</th>
+                                <th class="py-3 px-6 text-left">Realizador del pedido</th>
                                 <th class="py-3 px-6 text-right">Acciones</th>
                             </tr>
                         </thead>
@@ -52,22 +58,23 @@
                                     <div class="flex items-center">
                                         <span class="font-medium">{{$pedido->proveedor_id}}</span>
                                     </div>
-                                </td>                            
+                                </td>     
+                                @if(\Illuminate\Support\Facades\Auth::user()->tipo_usuario_id != 1)
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$pedido->recepcionista_id ? $pedido->recepcionista_nombre : __('No hizo el pedido')}}</span>
+                                        <span class="font-medium">{{$pedido->administrador->user->nombre}}</span>
                                     </div>
                                 </td>
+                                @endif
+                                @if(\Illuminate\Support\Facades\Auth::user()->tipo_usuario_id != 2)
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$pedido->administrador_id ? $pedido->administrador_nombre : __('No hizo el pedido')}}</span>
+                                        <span class="font-medium">{{optional($pedido->odontologo)->user->nombre ?? ''}}</span>
                                     </div>
                                 </td>
-                                <td class="py-3 px-6 text-left whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="font-medium">{{$pedido->odontologo_id ? $pedido->odontologo_nombre : __('No hizo el pedido')}}</span>
-                                    </div>
-                                </td>
+                                @endif
+
+                                
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-end">
                                         {{-- <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">

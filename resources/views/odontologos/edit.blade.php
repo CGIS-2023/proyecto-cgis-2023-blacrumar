@@ -93,7 +93,7 @@
                                
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{$pedido->fecha_emision->format('d/m/Y')}}</span>  
+                                        <span class="font-medium">{{$pedido->fecha_pedido->format('d/m/Y')}}</span>  
                                 </td> 
 
                             </tr>

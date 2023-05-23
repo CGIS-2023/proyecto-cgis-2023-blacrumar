@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use 
+ 
 
 class Administrador extends Model
 {
     use HasFactory, softDeletes;
 
-    //protected $fillable = ['nombre', 'apellidos', 'DNI', 'telefono', 'email'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -21,3 +20,4 @@ class Administrador extends Model
         return $this->hasMany(Pedido::class);
     }
 }
+

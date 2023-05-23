@@ -25,7 +25,11 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $proveedors = Proveedor::orderBy('nombre')->paginate(25);
+        $proveedors = Proveedor::query()
+            ->when(request('busqueda'), function($query) {
+                return $query->where('nombre', 'like', '%' . request('busqueda') . '%');     
+        })
+        ->paginate(25);
         return view('/proveedors/index', ['proveedors' => $proveedors]);
     }
 

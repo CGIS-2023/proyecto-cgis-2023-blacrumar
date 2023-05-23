@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Policies\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Pedido;
 use App\Http\Requests\StoreAdministradorRequest;

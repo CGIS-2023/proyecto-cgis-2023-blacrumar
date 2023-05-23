@@ -53,7 +53,7 @@
                                 <x-label for="tipo_articulo" :value="__('Tipo Articulo')" />
 
 
-                                <x-select id="tipo_articulo" name="tipo_articulo" required>
+                                <x-select id="tipo_articulo" name="tipo_articulo_id" required>
                                     <option value="">{{__('Elige una opción')}}</option>
                                     @foreach ($tipoArticulos as $tipoArticulo)
                                     <option value="{{$tipoArticulo->id}}" @if (old('tipo_articulo') == $tipoArticulo->id) selected @endif>{{$tipoArticulo->nombre}}</option>
@@ -66,7 +66,7 @@
                                 <x-label for="unidad_medida" :value="__('Unidad Medida')" />
 
 
-                                <x-select id="unidad_medida" name="unidad_medida" required>
+                                <x-select id="unidad_medida" name="unidad_medida_id" required>
                                     <option value="">{{__('Elige una opción')}}</option>
                                     @foreach ($unidadMedidas as $unidadMedida)
                                     <option value="{{$unidadMedida->id}}" @if (old('unidad_medida') == $unidadMedida->id) selected @endif>{{$unidadMedida->nombre}}</option>

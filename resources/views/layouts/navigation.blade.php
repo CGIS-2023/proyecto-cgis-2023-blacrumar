@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Página de Inicio') }}
                     </x-nav-link>
                 </div>
                    <!-- Navigation Links -->
@@ -72,7 +72,9 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <!-- Authentication -->
+                    
+ 
+                    <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -82,6 +84,11 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        @if(\Illuminate\Support\Facades\Auth::user()->tipo_usuario_id == 1)
+                        <x-dropdown-link :href="route('administradors.edit', Auth::user()->administrador->id)">
+                            {{ __('Mi perfil') }}
+                        </x-dropdown-link>
+                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -116,7 +123,7 @@
                 </div>
 
                 <div class="ml-3">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->nombre }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
             </div>

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
             $table->integer('precio');
             $table->integer('cantidad_pedida');
-            $table->foreignId('pedido_id')->constrained();
-            $table->foreignId('articulo_id')->constrained();
+            $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
+            $table->foreignId('articulo_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
         

@@ -23,7 +23,16 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        $articulos = Articulo::paginate(25); 
+        $articulos = Articulo::query()->when(request('busqueda'), function($query) {
+            return $query->where('nombre', 'like', '%' . request('busqueda') . '%')
+                    ->orWhere('tipo_objeto_id','like', '%' . request('busqueda') . '%')
+                    ->orWhereHas('tipo_objeto', function ($r) {
+                        $r->where('nombre', 'like', '%' .  request('busqueda') . '%');
+
+                    });
+                    
+            })
+            ->paginate(25);
         return view('/articulos/index', ['articulos' => $articulos]);
     }
 
@@ -50,10 +59,10 @@ class ArticuloController extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
-            'tipo_articulo_id' => 'string|max:255',
+            'tipo_articulo_id' => 'required|string|max:255',
             'cantidad' => 'required|numeric|min:0',
-            'cantidad_minima' => 'numeric|min:0',
-            'unidad_medida_id' => 'string:255',
+            'cantidad_minima' => 'required|numeric|min:0',
+            'unidad_medida_id' => 'required|string:255',
         
         ]);
         $articulo = new Articulo($request->all());
@@ -101,10 +110,10 @@ class ArticuloController extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:255',
-            'tipo_articulo_id' => 'string|max:255',
+            'tipo_articulo_id' => 'required|string|max:255',
             'cantidad' => 'required|numeric|min:0',
-            'cantidad_minima' => 'numeric|min:0',
-            'unidad_medida_id' => 'string|max:255',
+            'cantidad_minima' => 'required|numeric|min:0',
+            'unidad_medida_id' => 'required|string|max:255',
         ]);
         $articulo->fill($request->all());
         $articulo->save();

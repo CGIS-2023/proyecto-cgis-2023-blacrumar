@@ -53,29 +53,11 @@
                             </div>
 
                             <div class="mt-4">
-                            <x-label for="recepcionista_id" :value="__('Recepcionista')" />
+                            <x-label for="user_id" :value="__('Usuario')" />
                                 <x-input class="block mt-1 w-full"
                                          type="text"
                                          disabled
-                                         value="{{$pedido->recepcionista->user->name}}"
-                                />
-                        </div>
-
-                        <div class="mt-4">
-                            <x-label for="administrador_id" :value="__('Administrador')" />
-                                <x-input class="block mt-1 w-full"
-                                         type="text"
-                                         disabled
-                                         value="{{$pedido->administrador->user->name}}"
-                                />
-                        </div>
-
-                        <div class="mt-4">
-                            <x-label for="odontologo_id" :value="__('Odontólogo')" />
-                                <x-input class="block mt-1 w-full"
-                                         type="text"
-                                         disabled
-                                         value="{{$pedido->odontologo->user->name}}"
+                                         value="{{$pedido->user->name}}"
                                 />
                         </div>
 
